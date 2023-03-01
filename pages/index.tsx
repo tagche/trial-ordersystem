@@ -1,23 +1,25 @@
 import { useState, createContext } from 'react'
 //import Image from 'next/image'
 import styles from '@/styles/Home.module.css'
-//import { drinkListType, productList } from './api/connect'
-
-import HeadMeta from './component/headMeta'
-import Header from './component/header'
-import Footer from './component/footer'
+import HeadMeta from './component/foundation/headMeta'
+import Header from './component/foundation/header'
+import Footer from './component/foundation/footer'
 import ProductPanel from './component/product/panel'
+import loginStatus from './component/module/loginControl'
 import Cart from './component/product/cart'
 
 
-export const TotalFeeContext = createContext([])
-export type cartType = []
+export const loginContext = createContext(false)
+export const cartContext = createContext([])
+
 
 export default function Home() {
   const [cart, setCart] = useState([])
+  const [loginStatus, setLogin] = useState(false)
 
   return (
-    <TotalFeeContext.Provider value={{cart, setCart}}>
+    <loginContext.Provider value={{loginStatus, setLogin}}>
+    <cartContext.Provider value={{cart, setCart}}>
       <HeadMeta />
       <Header />
       <main className={styles.main}>
@@ -32,6 +34,7 @@ export default function Home() {
         </div>
       </main>
       <Footer />
-    </TotalFeeContext.Provider>
+    </cartContext.Provider>
+    </loginContext.Provider>
   )
 }

@@ -1,8 +1,8 @@
 import { useState, useEffect, useContext } from 'react'
-import { TotalFeeContext } from '../../index'
+import { cartContext } from '../../index'
 
 export default function Cart(){
-    const { cart, setCart } = useContext(TotalFeeContext)
+    const { cart, setCart } = useContext(cartContext)
     
     return (
         <ul>

@@ -1,12 +1,12 @@
 import { useState, useEffect, useContext } from 'react'
 import { drinkListType, productList } from '../../api/connect'
-import { TotalFeeContext } from '../../index'
+import { cartContext } from '../../index'
 
 
 //商品毎の注文数をハンドリング
 export function CountControl(e: drinkListType){
     const [ count, setCount ] = useState(0)
-    const { cart, setCart } = useContext(TotalFeeContext)
+    const { cart, setCart } = useContext(cartContext)
 
     const handleCount = (flag: boolean, id: string | number) => {
 
