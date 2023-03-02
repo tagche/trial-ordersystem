@@ -1,9 +1,10 @@
+import { useState, useContext } from 'react'
 import { userList } from '@/pages/api/users'
-import { useState, createContext } from 'react'
-
+import { loginContext } from '../../index'
 
 export default function LoginControl(){
-    const [loginStatus, setLogin] = useState(false)
+    const {loginStatus, setLogin} = useContext(loginContext)
+    
     const [userEmail, setUserEmail] = useState("example@gmail.com")
     const [userPassword, setUserPassword] = useState("1234")
 

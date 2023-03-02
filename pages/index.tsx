@@ -5,13 +5,12 @@ import HeadMeta from './component/foundation/headMeta'
 import Header from './component/foundation/header'
 import Footer from './component/foundation/footer'
 import ProductPanel from './component/product/panel'
-import loginStatus from './component/module/loginControl'
 import Cart from './component/product/cart'
+import Nav from './component/product/nav'
 
 
-export const loginContext = createContext(false)
-export const cartContext = createContext([])
-
+export const loginContext = createContext<Boolean>(false)
+export const cartContext = createContext([""])
 
 export default function Home() {
   const [cart, setCart] = useState([])
@@ -24,7 +23,7 @@ export default function Home() {
       <Header />
       <main className={styles.main}>
         <nav className={styles.nav}>
-          aaa
+          <Nav />
         </nav>
         <div>
           <ProductPanel />

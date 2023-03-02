@@ -1,12 +1,14 @@
 import { useState, useEffect, useContext } from 'react'
-import { drinkListType, productList } from '../../api/connect'
+import { productListType, drinkList } from '../../api/connect'
 import { cartContext } from '../../index'
 
+import styles from '@/styles/Home.module.css'
 
 //商品毎の注文数をハンドリング
-export function CountControl(e: drinkListType){
-    const [ count, setCount ] = useState(0)
+export function CountControl(e: productListType){
     const { cart, setCart } = useContext(cartContext)
+    
+    const [ count, setCount ] = useState(0)
 
     const handleCount = (flag: boolean, id: string | number) => {
 
@@ -68,9 +70,9 @@ export function CountControl(e: drinkListType){
 //商品一覧をレンダリング
 export default function ProductPanel(){
     return (
-        <ul>
+        <ul className={styles.productList}>
             {
-                productList.map((e: drinkListType) => (
+                drinkList.map((e: drinkListType) => (
                     <li key={e.id}>
                         <p>{e.ja}</p>
                         <CountControl {...e} />

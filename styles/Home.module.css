@@ -17,3 +17,19 @@
   background: lightgray;
 }
 
+.productList{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 2em;
+}
+.productList li{
+  min-width: 10em;
+  padding: 1em;
+  border: 1px solid lightgray;
+  text-align: center;
+}
+
+.productList button{
+  margin: 0 .5em;
+}

@@ -101,11 +101,27 @@ a {
 }
 
 button {
-  padding: 0 .5em;
+  padding: .5em 1em;
 }
 
 ul, ol, li{
   list-style-type: none;
+}
+
+.css-1elwnq4-MuiPaper-root-MuiAccordion-root.Mui-expanded{
+  margin: 0 !important;
+}
+
+.css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root.Mui-expanded{
+  min-height: 48px;
+}
+
+.css-o4b71y-MuiAccordionSummary-content.Mui-expanded{
+  margin: 0 !important;
+}
+
+.css-15v22id-MuiAccordionDetails-root{
+  padding: 0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -113,3 +129,4 @@ ul, ol, li{
     color-scheme: dark;
   }
 }
+
