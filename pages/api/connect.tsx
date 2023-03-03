@@ -1,5 +1,7 @@
 //仮置き
 //最終的にAPIに書き換える
+
+//商品情報
 export interface productListType{
     id: string
     ja: string
@@ -29,17 +31,39 @@ export const foodList_jp: productListType[] = [
         price: 1280
     }
 ]
-export const drinkList: productListType[] = [
+export const hotdrink: productListType[] = [
     {
-        id: "coffee",
-        ja: "コーヒー",
+        id: "brend_coffee",
+        ja: "ブレンドコーヒー",
+        price: 180
+    },
+    {
+        id: "american_coffee",
+        ja: "アメリカンコーヒー",
+        price: 180
+    },
+    {
+        id: "cocoa",
+        ja: "ココア",
+        price: 480
+    },
+    {
+        id: "hotmilk",
+        ja: "ホットミルク",
+        price: 480
+    },
+    {
+        id: "chai",
+        ja: "チャイ",
         price: 480
     },
     {
         id: "tea",
         ja: "紅茶",
         price: 280
-    },
+    }
+]
+export const otherdrink: productListType[] = [
     {
         id: "milk",
         ja: "ミルク",
@@ -56,21 +80,23 @@ export const drinkList: productListType[] = [
         price: 580
     }
 ]
-export const fruitList: productListType[] = [
+export const redfruit: productListType[] = [
     {
         id: "apple",
         ja: "りんご",
         price: 150
     },
     {
-        id: "banana",
-        ja: "ばなな",
-        price: 280
-    },
-    {
         id: "strawberry",
         ja: "いちご",
         price: 398
+    }
+]
+export const yellowfruit: productListType[] = [
+    {
+        id: "banana",
+        ja: "ばなな",
+        price: 280
     },
     {
         id: "orange",
@@ -79,6 +105,7 @@ export const fruitList: productListType[] = [
     }
 ]
 
+//カテゴリ情報
 export interface subCategoryType{
     id: string
     subCategoryJa: string
@@ -94,12 +121,12 @@ export const categoryList: categoryType[] = [
         id: "food",
         ja: "たべもの",
         child: [{
-            id: "1",
+            id: "fastfood",
             subCategoryJa: "ファストフード・軽食",
             subCategory: [foodList_fast]
         },
         {
-            id: "2",
+            id: "japanese_food",
             subCategoryJa: "和食",
             subCategory: [foodList_jp]
         }]
@@ -108,28 +135,37 @@ export const categoryList: categoryType[] = [
         id: "fruit",
         ja: "フルーツ",
         child: [{
-            id: "1",
+            id: "redfruit",
             subCategoryJa: "赤いフルーツ",
-            subCategory: [fruitList]
+            subCategory: [redfruit]
         },
         {
-            id: "2",
+            id: "yellowfruit",
             subCategoryJa: "黄色いフルーツ",
-            subCategory: [fruitList]
+            subCategory: [yellowfruit]
         }]
     },
     {
         id: "drink",
         ja: "飲み物",
         child: [{
-            id: "1",
+            id: "hotdrink",
             subCategoryJa: "ホットドリンク",
-            subCategory: [drinkList]
+            subCategory: [hotdrink]
         },
         {
-            id: "3",
+            id: "otherdrink",
             subCategoryJa: "その他",
-            subCategory: [drinkList]
+            subCategory: [otherdrink]
         }]
     }
 ]
+
+export const productTable = {
+    fastfood: foodList_fast,
+    japanese_food: foodList_jp,
+    redfruit: redfruit,
+    yellowfruit: yellowfruit,
+    hotdrink: hotdrink,
+    otherdrink: otherdrink
+}

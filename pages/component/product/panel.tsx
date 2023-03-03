@@ -1,18 +1,27 @@
 import { useState, useEffect, useContext } from 'react'
-import { productListType, drinkList } from '../../api/connect'
+import { productListType, productTable } from '../../api/connect'
 import { cartContext } from '../../index'
-
 import styles from '@/styles/Home.module.css'
+
+
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 
 //商品毎の注文数をハンドリング
 export function CountControl(e: productListType){
     const { cart, setCart } = useContext(cartContext)
     
     const [ count, setCount ] = useState(0)
+    const [ disable1, setDisable1 ] = useState(false)
+    const [ disable2, setDisable2 ] = useState(true)
 
     const handleCount = (flag: boolean, id: string | number) => {
-
-        if(flag && count < 10){
+        if(flag && count < 3){
             // 商品数増加時の処理
             let addFlag = false
 
@@ -53,31 +62,118 @@ export function CountControl(e: productListType){
             setCount(count - 1)
         }
     }
+    const handleDisable = (flag: boolean) => {
+        if(flag){
+            if(count == 2) setDisable1(true)
+            if(count == 1) setDisable2(false)
+        }else{
+            if(count == 3) setDisable1(false)
+            if(count == 1) setDisable2(true)
+        }
+    }
 
     return (
         <div>
-            <button key={e.id + "1"} onClick={() => {
-                handleCount(true, e.id)
-            }}>+</button>
+            <Button variant="contained" key={e.id + "1"} disabled={disable1}
+                onClick={() => {
+                    handleCount(true, e.id)
+                    handleDisable(true)
+                }}>+</Button>
             {count}
-            <button key={e.id} onClick={() => {
+            <Button variant="contained" key={e.id} disabled={disable2} onClick={() => {
                 handleCount(false, e.id)
-            }}>-</button>
+                handleDisable(false)
+            }}>-</Button>
         </div>
     )
 }
 
 //商品一覧をレンダリング
-export default function ProductPanel(){
+export default function ProductPanel(props: string = ""){
+    const category = props.category 
+        ? productTable[props.category]
+        : "all"
+    //console.log(productTable[category])
+    
     return (
         <ul className={styles.productList}>
             {
-                drinkList.map((e: drinkListType) => (
-                    <li key={e.id}>
-                        <p>{e.ja}</p>
-                        <CountControl {...e} />
-                    </li>
-                ))
+                category !== "all" &&
+                    <Grid container spacing={4}>
+                        {category.map((e: productListType) => (
+                        <Grid item key={e.id} xs={12} sm={6} md={4}>
+                            <Card
+                            sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+                            >
+                            <CardMedia
+                                component="img"
+                                sx={{
+                                 16:9
+                                }}
+                                image="https://unsplash.it/800/600/?random"
+                                alt="random"
+                            />
+                            <CardContent sx={{ flexGrow: 1 }}>
+                                <Typography gutterBottom variant="h6" component="h2">
+                                {e.ja}
+                                </Typography>
+                                <Typography>
+                                テキストテキストテキストテキストテキストテキストテキストテキストテキスト
+                                </Typography>
+                            </CardContent>
+                            <CardActions
+                                sx={{
+                                    pb: "1em"
+                                }}>
+                                <CountControl {...e} />
+                            </CardActions>
+                            </Card>
+                        </Grid>
+                        ))}
+                    </Grid>
+            }
+
+            {
+                category == "all" &&
+                    <>
+                    {
+                        Object.values(productTable).map((arr) => (
+                            //console.log(arr[0])
+                            <Grid container spacing={4}>
+                                {arr.map((e: productListType) => (
+                                <Grid item key={e.id} xs={12} sm={6} md={4}>
+                                    <Card
+                                    sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+                                    >
+                                    <CardMedia
+                                        component="img"
+                                        sx={{
+                                        16:9
+                                        }}
+                                        image="https://unsplash.it/800/600/?random"
+                                        alt="random"
+                                    />
+                                    <CardContent sx={{ flexGrow: 1 }}>
+                                        <Typography gutterBottom variant="h6" component="h2">
+                                        {e.ja}
+                                        </Typography>
+                                        <Typography>
+                                        テキストテキストテキストテキストテキストテキストテキストテキストテキスト
+                                        </Typography>
+                                    </CardContent>
+                                    <CardActions
+                                        sx={{
+                                            pb: "1em"
+                                        }}>
+                                        <CountControl {...e} />
+                                    </CardActions>
+                                    </Card>
+                                </Grid>
+                                ))}
+                            </Grid>
+                        ))
+                    }
+                    </>
             }
         </ul>
     )

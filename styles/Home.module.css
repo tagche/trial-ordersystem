@@ -8,9 +8,10 @@
 .nav{
   width: 25%;
   min-width: 15em;
-  background: white;
 }
-
+.main > *:nth-child(2){
+  margin: 0 2em;
+}
 .main > *:nth-child(3){
   width: 25%;
   min-width: 15em;
@@ -21,7 +22,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 0 2em;
+  margin: 2em 0;
+  text-align: left;
 }
 .productList li{
   min-width: 10em;
