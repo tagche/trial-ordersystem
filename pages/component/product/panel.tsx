@@ -10,6 +10,10 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import db from '../../firebase';
+import { collection, getDocs } from 'firebase/firestore';
+
+
 
 //商品毎の注文数をハンドリング
 export function CountControl(e: productListType){
@@ -19,8 +23,7 @@ export function CountControl(e: productListType){
     const [ disable1, setDisable1 ] = useState(false)
     const [ disable2, setDisable2 ] = useState(true)
 
-    console.log(cart);
-    
+   
     const handleCount = (flag: boolean) => {
         const id = e.id
         if(flag && count < 3){
@@ -97,9 +100,31 @@ export default function ProductPanel(props: string = ""){
     const category = props.category 
         ? productTable[props.category]
         : "all"
-    //console.log(productTable[category])
     
+    
+    const [ productData, setData ] = useState([{}])
+    useEffect(() => {
+        //firebaseからデータ取得
+        const getProducts = collection(db, "products")
+        
+        getDocs(getProducts)
+            .then((snapShot) => {
+                snapShot.docs.map((doc) => {
+                    setData([...productData, doc.data()])
+                })
+            })        
+    }, [])
+    
+
     return (
+        <>
+            {
+                productData.map((e) => (
+                    //console.log(e.foodList_jp)
+                    Object.values(e).map((list) => console.log(list[0].id))
+                    
+                ))
+            }
         <ul className={styles.productList}>
             {
                 category !== "all" &&
@@ -180,5 +205,6 @@ export default function ProductPanel(props: string = ""){
                     </>
             }
         </ul>
+        </>
     )
 }
