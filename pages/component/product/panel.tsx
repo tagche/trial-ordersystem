@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react'
 import { productListType, productTable } from '../../api/connect'
-import { cartContext } from '../../index'
+import { cartContext } from '../../'
 import styles from '@/styles/Home.module.css'
 
 import Button from '@mui/material/Button';
@@ -19,6 +19,8 @@ export function CountControl(e: productListType){
     const [ disable1, setDisable1 ] = useState(false)
     const [ disable2, setDisable2 ] = useState(true)
 
+    console.log(cart);
+    
     const handleCount = (flag: boolean) => {
         const id = e.id
         if(flag && count < 3){
@@ -32,8 +34,6 @@ export function CountControl(e: productListType){
                 addFlag = true
                 setCart([...cart]) //cartを再代入してカート内容を再レンダリング
             })
-            
-            console.log(e);
             
             //カート内に対象商品がない場合は追加
             if(!addFlag){
@@ -141,9 +141,9 @@ export default function ProductPanel(props: string = ""){
                 category == "all" &&
                     <>
                     {
-                        Object.values(productTable).map((arr) => (
+                        Object.values(productTable).map((arr, i: number) => (
                             //console.log(arr[0])
-                            <Grid container spacing={4}>
+                            <Grid container key={i} spacing={4}>
                                 {arr.map((e: productListType) => (
                                 <Grid item key={e.id} xs={12} sm={6} md={4} sx={{marginBottom: "2em"}}>
                                     <Card

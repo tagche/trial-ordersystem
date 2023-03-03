@@ -1,9 +1,8 @@
 import { useContext } from 'react'
 import { Divider } from '@mui/material'
 import Paper from '@mui/material/Paper'
-import Box from '@mui/material/Box'
 
-import { cartContext, loginContext } from '../../index'
+import { cartContext, loginContext } from '../../'
 import LoginControl from "../module/loginControl"
 
 import styles from '@/styles/cart.module.css'
@@ -24,7 +23,6 @@ export default function Cart(){
                                 <li key={e.id} className={styles.side}>
                                     <img src="https://unsplash.it/800/600/?random" alt="" width="100" />
                                     <p>{e.ja}<br />{e.count}点</p>
-                                    
                                 </li>
                             )
                         }
@@ -40,6 +38,6 @@ export default function Cart(){
 
             <LoginControl />
         </Paper>
-        </>
+         </>
     )
 }

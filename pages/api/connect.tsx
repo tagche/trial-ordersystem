@@ -29,7 +29,18 @@ export const foodList_jp: productListType[] = [
         id: "sushi",
         ja: "寿司",
         price: 1280
+    },
+    {
+        id: "templa",
+        ja: "天ぷら",
+        price: 1280
+    },
+    {
+        id: "noodle",
+        ja: "うどん・そば",
+        price: 1280
     }
+
 ]
 export const hotdrink: productListType[] = [
     {
