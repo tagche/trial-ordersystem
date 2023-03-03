@@ -105,7 +105,7 @@ export default function ProductPanel(props: string = ""){
                 category !== "all" &&
                     <Grid container spacing={4}>
                         {category.map((e: productListType) => (
-                        <Grid item key={e.id} xs={12} sm={6} md={4}>
+                        <Grid item key={e.id} xs={12} sm={6} md={4} sx={{marginBottom: "1em"}}>
                             <Card
                             sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                             >
@@ -145,7 +145,7 @@ export default function ProductPanel(props: string = ""){
                             //console.log(arr[0])
                             <Grid container spacing={4}>
                                 {arr.map((e: productListType) => (
-                                <Grid item key={e.id} xs={12} sm={6} md={4}>
+                                <Grid item key={e.id} xs={12} sm={6} md={4} sx={{marginBottom: "2em"}}>
                                     <Card
                                     sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                                     >

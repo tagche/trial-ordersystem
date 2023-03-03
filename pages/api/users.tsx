@@ -13,11 +13,5 @@ export const userList: userType[] = [
         name: "User1",
         email: "example@gmail.com",
         password: "1234"
-    },
-    {
-        id: "2",
-        name: "User2",
-        email: "example@gmail.com",
-        password: "1234"
     }
 ]
