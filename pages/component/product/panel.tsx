@@ -3,7 +3,6 @@ import { productListType, productTable } from '../../api/connect'
 import { cartContext } from '../../index'
 import styles from '@/styles/Home.module.css'
 
-
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -20,7 +19,8 @@ export function CountControl(e: productListType){
     const [ disable1, setDisable1 ] = useState(false)
     const [ disable2, setDisable2 ] = useState(true)
 
-    const handleCount = (flag: boolean, id: string | number) => {
+    const handleCount = (flag: boolean) => {
+        const id = e.id
         if(flag && count < 3){
             // 商品数増加時の処理
             let addFlag = false
@@ -32,11 +32,15 @@ export function CountControl(e: productListType){
                 addFlag = true
                 setCart([...cart]) //cartを再代入してカート内容を再レンダリング
             })
-
+            
+            console.log(e);
+            
             //カート内に対象商品がない場合は追加
             if(!addFlag){
                 setCart([...cart, {
                     id: id,
+                    ja: e.ja,
+                    price: e.price,
                     count: count + 1
                 }])
             }
@@ -76,12 +80,12 @@ export function CountControl(e: productListType){
         <div>
             <Button variant="contained" key={e.id + "1"} disabled={disable1}
                 onClick={() => {
-                    handleCount(true, e.id)
+                    handleCount(true)
                     handleDisable(true)
                 }}>+</Button>
             {count}
             <Button variant="contained" key={e.id} disabled={disable2} onClick={() => {
-                handleCount(false, e.id)
+                handleCount(false)
                 handleDisable(false)
             }}>-</Button>
         </div>

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { List, ListItemButton, ListItem, ListItemText, Divider, Accordion, AccordionSummary, AccordionDetails, Button, Typography } from '@mui/material';
+import { List, ListItemButton, ListItemText, Divider, Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { categoryList } from '../../api/connect'
 
@@ -10,7 +10,6 @@ export default function Nav(){
     
     const style = {
         width: '100%',
-        maxWidth: 360,
         bgcolor: 'background.paper',
         padding: '0'
     };
@@ -18,9 +17,9 @@ export default function Nav(){
     return (
         <>
             <List sx={style} component="nav" aria-label="mailbox folders">
-                <ListItem button>
+                <ListItemButton component={Link} href="/">
                     <ListItemText primary="Top" />
-                </ListItem>
+                </ListItemButton>
                 <Divider />
             </List>
             {

@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react'
 import { userList } from '@/pages/api/users'
 import { loginContext } from '../../index'
+import { TextField, Button } from '@mui/material'
 
 export default function LoginControl(){
     const {loginStatus, setLogin} = useContext(loginContext)
@@ -28,11 +29,26 @@ export default function LoginControl(){
         {
             !loginStatus  
             ? <form action="" onSubmit={handleSubmit}>
-                <input type="text" value={userEmail} id="email" placeholder='user e-mail' onChange={handleChange} /><br />
-                <input type="password" value={userPassword} id="password" placeholder='password' onChange={handleChangePassword} />
-                <button type="submit">Login</button>
+                <TextField
+                    required
+                    id="outlined-required"
+                    label="Required"
+                    defaultValue={userEmail}
+                    onChange={handleChange}
+                    sx={{margin: '1em 0'}}
+                    />
+                <TextField
+                    id="outlined-password-input"
+                    label="Password"
+                    type="password"
+                    autoComplete="current-password"
+                    defaultValue={userPassword}
+                    onChange={handleChangePassword}
+                    />
+                <br />
+                <Button type="submit">Login</Button>
             </form>
-            : <p>ログイン中... <br />{userEmail}</p>
+            : <p></p>
         }
         </>
     )

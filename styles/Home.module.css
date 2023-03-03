@@ -6,16 +6,14 @@
 }
 
 .nav{
-  width: 25%;
+  width: 15em;
   min-width: 15em;
 }
 .main > *:nth-child(2){
   margin: 0 2em;
 }
 .main > *:nth-child(3){
-  width: 25%;
-  min-width: 15em;
-  background: lightgray;
+  min-width: 20em;
 }
 
 .productList{
